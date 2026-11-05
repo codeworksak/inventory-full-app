@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: inventory-pg-statefulset
+  namespace: inventory-infrastructure
+  labels:
+    app: inventory-pg-db
+spec:
+  serviceName: inventory-pg-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory-pg-db
+  template:
+    metadata:
+      labels:
+        app: inventory-pg-db
+    spec:
+      containers:
+        - name: inventory-pg-container
+          image: postgres:17-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "pgp@1234"
+            - name: POSTGRES_DB
+              value: "inventorydb"
+          volumeMounts:
+            - name: inventory-pg-storage
+              mountPath: /var/lib/postgresql/data    
+      volumes:
+        - name: inventory-pg-storage
+          persistentVolumeClaim:
+            claimName: inv-pg-pvc        

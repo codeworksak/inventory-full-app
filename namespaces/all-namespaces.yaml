@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: inventory-catalog
+  labels:
+    tier: business
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: inventory-cart
+  labels:
+    tier: business
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: inventory
+  labels:
+    tier: business
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: inventory-order
+  labels:
+    tier: business
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: inventory-gateway 
+  labels:
+    tier: business
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: inventory-infrastructure
+  labels:
+    tier: infrastructure
