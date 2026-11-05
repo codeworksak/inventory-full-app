@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployement
+metadata:
+  name: inv-gateway
+  namespace: inventory-gateway
+  labels:
+    app: inv-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inv-gateway
+  template:
+    metadata:
+      labels:
+        app: inv-gateway
+    spec:
+      containers:
+        - name: inv-gateway-container
+          image: codeworksak/inventory-gateway:v1
+          ports:
+            - containerPort: 8085
+          env:
+            - name: CATALOG_ROUTE
+              value: "inv-rabbitmq-svc.inventory-infrastructure.svc.cluster.local"
+            - name: CATALOG_PORT
+              value: "8081"
+            - name: CART_ROUTE
+              value: "inv-rabbitmq-svc.inventory-infrastructure.svc.cluster.local"
+            - name: CART_PORT
+              value: "8082"
+            - name: INVENTORY_ROUTE
+              value: "inv-rabbitmq-svc.inventory-infrastructure.svc.cluster.local"
+            - name: INVENTORY_PORT
+              value: "8083"          
+            - name: ORDER_ROUTE
+              value: "inv-rabbitmq-svc.inventory-infrastructure.svc.cluster.local"
+            - name: ORDER_PORT
+              value: "8084"
+              
+
+
+
+
