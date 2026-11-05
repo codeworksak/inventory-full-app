@@ -5,7 +5,7 @@ metadata:
   labels:
     app: inventory-pg-db
 spec:
-  ClusterIP: None
+  clusterIP: None
   ports:
     - name: postgres
       port: 5432
