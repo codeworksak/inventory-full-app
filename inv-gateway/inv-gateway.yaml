@@ -1,11 +1,12 @@
 apiVersion: apps/v1
-kind: Deployement
+kind: Deployment
 metadata:
   name: inv-gateway
   namespace: inventory-gateway
   labels:
     app: inv-gateway
 spec:
+ # serviceName: inv-gateway-svc
   replicas: 1
   selector:
     matchLabels:
@@ -26,7 +27,7 @@ spec:
             - name: CATALOG_PORT
               value: "8081"
             - name: CART_ROUTE
-              value: "inv-rabbitmq-svc.inventory-infrastructure.svc.cluster.local"
+              value: "inv-cart-svc.inventory-cart.svc.cluster.local"
             - name: CART_PORT
               value: "8082"
             - name: INVENTORY_ROUTE

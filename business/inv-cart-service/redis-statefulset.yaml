@@ -22,7 +22,7 @@ spec:
           ports:
             - containerPort: 6379
               name: redis
-          resiyrces:
+          resources:
             requests:
               memory: "128Mi"
               cpu: "100m"
