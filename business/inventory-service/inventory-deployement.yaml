@@ -27,8 +27,8 @@ spec:
               value: "5432"
             - name: PG_USER
               value: "postgres"
-            - name: PG_PASSWORD
-              value: "pg@1234"
+            - name: PG_PASS
+              value: "pgp@1234"
             - name: PG_DB
               value: "inventorydb"
             - name: REDIS_HOST

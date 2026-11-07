@@ -23,7 +23,7 @@ spec:
             - containerPort: 8085
           env:
             - name: CATALOG_ROUTE
-              value: "inv-rabbitmq-svc.inventory-infrastructure.svc.cluster.local"
+              value: "inv-catalog-svc.inventory-catalog.svc.cluster.local"
             - name: CATALOG_PORT
               value: "8081"
             - name: CART_ROUTE
@@ -31,14 +31,13 @@ spec:
             - name: CART_PORT
               value: "8082"
             - name: INVENTORY_ROUTE
-              value: "inv-rabbitmq-svc.inventory-infrastructure.svc.cluster.local"
+              value: "inventory-svc.inventory.svc.cluster.local"
             - name: INVENTORY_PORT
-              value: "8083"          
+              value: "8083"
             - name: ORDER_ROUTE
-              value: "inv-rabbitmq-svc.inventory-infrastructure.svc.cluster.local"
+              value: "inv-order-svc.inventory-order.svc.cluster.local"
             - name: ORDER_PORT
               value: "8084"
-              
 
 
 

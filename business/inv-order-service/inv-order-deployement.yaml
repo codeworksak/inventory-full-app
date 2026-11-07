@@ -22,7 +22,7 @@ spec:
             - containerPort: 8084
           env:
             - name: MONGO_HOST
-              value: "inventory-mongo-service.inventory-infrastructure.svc.cluster.local"
+              value: "order-mongo-service.inventory-infrastructure.svc.cluster.local"
             - name: MONGO_PORT
               value: "27017"
             - name: RABBIT_HOST
