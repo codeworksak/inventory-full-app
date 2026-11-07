@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inv-order-deployment
+  namespace: inventory-order  
+  labels:
+    app: inv-order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inv-order
+  template:
+    metadata:
+      labels:
+        app: inv-order
+    spec:
+      containers:
+        - name: inv-order
+          image: codeworksak/inventory-order:v1
+          ports:
+            - containerPort: 8084
+          env:
+            - name: MONGO_HOST
+              value: "inventory-mongo-service.inventory-infrastructure.svc.cluster.local"
+            - name: MONGO_PORT
+              value: "27017"
+            - name: RABBIT_HOST
+              value: "inv-rabbitmq-svc.inventory-infrastructure.svc.cluster.local"
+            - name: RABBIT_PORT
+              value: "5672"
+            - name: RABBIT_USER
+              value: "guest"
+            - name: RABBIT_PASSWORD
+              value: "guest"
+            - name: RABBIT_Q
+              value: "order-queue"
+            - name: RABBIT_EXCHANGE
+              value: "fanout.ordering"
+            - name: RABBIT_ROUTE_KEY
+              value: "ordering"  

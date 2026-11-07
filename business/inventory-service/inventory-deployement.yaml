@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-deployment
+  namespace: inventory
+  labels:
+    app: inventory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory
+  template:
+    metadata:
+      labels:
+        app: inventory
+    spec:
+      containers:
+        - name: inventory
+          image: codeworksak/inventory:v1
+          ports:
+            - containerPort: 8083
+          env:
+            - name: PG_HOST
+              value: "inventory-pg-service.inventory-infrastructure.svc.cluster.local"  
+            - name: PG_PORT
+              value: "5432"
+            - name: PG_USER
+              value: "postgres"
+            - name: PG_PASSWORD
+              value: "pg@1234"
+            - name: PG_DB
+              value: "inventorydb"
+            - name: REDIS_HOST
+              value: "cart-redis-service.inventory-cart.svc.cluster.local"        
+            - name: REDIS_PORT
+              value: "6379"
+            - name: RABBIT_HOST
+              value: "inv-rabbitmq-svc.inventory-infrastructure.svc.cluster.local"
+            - name: RABBIT_PORT
+              value: "5672"
+            - name: RABBIT_USER
+              value: "guest"
+            - name: RABBIT_PASSWORD
+              value: "guest"
+            - name: RABBIT_Q
+              value: "order-queue"      
+            - name: RABBIT_EXCHANGE
+              value: "order-exchange"
+            - name: RABBIT_ROUTE_KEY
+              value: "ordering"    

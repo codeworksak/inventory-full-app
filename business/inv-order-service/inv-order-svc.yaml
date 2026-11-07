@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: inv-order-svc
+  labels:
+    app: inv-order
+  namespace: inventory-order  
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8084
+      targetPort: 8084
+  selector:
+    app: inv-order
+   

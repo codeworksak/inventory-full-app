@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inv-catalog-deployment
+  namespace: inventory-catalog
+  labels:
+    app: inv-catalog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inv-catalog
+  template:   
+    metadata:
+      labels:
+        app: inv-catalog
+    spec:
+      containers:
+        - name: inv-catalog-container
+          image: codeworksak/inventory-catalog:18
+          ports:
+            - containerPort: 8082
